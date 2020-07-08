@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/card_view_default_height"
+  android:layout_margin="@dimen/standard_margin"
+  app:cardCornerRadius="@dimen/card_view_corners">
+
+  <android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      android:id="@+id/tv_id_card_view_custom_layout"
+      android:layout_width="@dimen/dimen_fully_stretchable"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/standard_margin"
+      android:layout_marginEnd="@dimen/standard_margin"
+      android:layout_marginStart="@dimen/standard_margin"
+      android:layout_marginTop="@dimen/standard_margin"
+      android:textAllCaps="true"
+      android:textSize="@dimen/text_large"
+      android:textStyle="bold"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:text="Hello World!" />
+
+    <TextView
+      android:id="@+id/tv_joke_card_view_custom_layout"
+      android:layout_width="@dimen/dimen_fully_stretchable"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/standard_margin"
+      android:layout_marginEnd="@dimen/standard_margin"
+      android:layout_marginStart="@dimen/standard_margin"
+      android:layout_marginTop="@dimen/standard_margin"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/tv_id_card_view_custom_layout"
+      tools:text="hello world snippet" />
+  </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/darker_gray"
+  tools:context="com.raywenderlich.chuckyfacts.view.activities.MainActivity">
+
+  <include
+    android:id="@+id/toolbar_view"
+    layout="@layout/toolbar_view_custom_layout"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <android.support.v7.widget.CardView
+    android:id="@+id/card_view_background_activity_detail"
+    android:layout_width="@dimen/dimen_fully_stretchable"
+    android:layout_height="@dimen/dimen_fully_stretchable"
+    android:layout_margin="@dimen/bigger_margin"
+    app:cardCornerRadius="@dimen/card_view_corners"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/toolbar_view">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/tv_joke_id_activity_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dimen_fully_stretchable"
+        android:layout_marginBottom="@dimen/standard_margin"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:layout_weight=".33"
+        android:gravity="bottom"
+        android:paddingEnd="@dimen/standard_margin"
+        android:paddingStart="@dimen/standard_margin"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/text_large"
+        tools:text="ID" />
+
+      <TextView
+        android:id="@+id/tv_joke_activity_detail"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_fully_stretchable"
+        android:layout_marginEnd="@dimen/standard_margin"
+        android:layout_marginStart="@dimen/standard_margin"
+        android:layout_marginTop="@dimen/standard_margin"
+        android:layout_weight=".66"
+        android:gravity="top"
+        android:textColor="@android:color/black"
+        tools:text="What is the height of misunderstandings..." />
+
+    </LinearLayout>
+
+  </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

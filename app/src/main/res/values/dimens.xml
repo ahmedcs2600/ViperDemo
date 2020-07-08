@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="dimen_fully_stretchable">0dp</dimen>
+  <dimen name="base_dimen_4">4dp</dimen>
+  <dimen name="base_dimen_8">8dp</dimen>
+  <dimen name="base_dimen_200">200dp</dimen>
+  <dimen name="base_dimen_text_18">18sp</dimen>
+
+  <dimen name="card_view_corners">@dimen/base_dimen_4</dimen>
+  <dimen name="standard_margin">@dimen/base_dimen_8</dimen>
+  <dimen name="bigger_margin">16dp</dimen>
+  <dimen name="card_view_default_height">@dimen/base_dimen_200</dimen>
+  <dimen name="text_large">@dimen/base_dimen_text_18</dimen>
+</resources>
