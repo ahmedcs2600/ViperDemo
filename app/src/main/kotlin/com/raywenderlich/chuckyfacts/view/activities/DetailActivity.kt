@@ -23,14 +23,99 @@
 package com.raywenderlich.chuckyfacts.view.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
+import android.view.MenuItem
+import com.raywenderlich.chuckyfacts.App
+import com.raywenderlich.chuckyfacts.DetailContract
+import com.raywenderlich.chuckyfacts.DetailPresenter
 import com.raywenderlich.chuckyfacts.R
+import com.raywenderlich.chuckyfacts.entity.Joke
+import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
+import org.jetbrains.anko.toast
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.commands.Back
+import ru.terrakok.cicerone.commands.Command
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : BaseActivity() , DetailContract.View {
+
+  companion object{
+    const val TAG = "DetailActivity"
+  }
+
+  private var presenter : DetailContract.Presenter? = null
+
+  private val navigator: Navigator? by lazy {
+    object : Navigator {
+      override fun applyCommand(command: Command) {
+        if (command is Back) {
+          back()
+        }
+      }
+
+      private fun back() {
+        finish()
+      }
+    }
+  }
+
+  private val toolbar by lazy {
+    toolbar_toolbar_view
+  }
+
+  private val tvId by lazy {
+    tv_joke_id_activity_detail
+  }
+
+  private val tvJoke by lazy {
+    tv_joke_activity_detail
+  }
+
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+    presenter = DetailPresenter(this)
   }
 
+  override fun getToolbarInstance(): Toolbar? {
+    return toolbar
+  }
+
+  override fun showJokeData(id: String, joke: String) {
+    tvId.text = id
+    tvJoke.text = joke
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+    return when(item?.itemId){
+      android.R.id.home -> {
+        presenter?.backButtonClicked()
+        true
+      }
+      else -> false
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    App.INSTANCE.cicerone.navigatorHolder.setNavigator(navigator)
+    supportActionBar?.let {
+      it.setDisplayHomeAsUpEnabled(true)
+    }
+
+    val argument = intent.getParcelableExtra<Joke>("data")
+    argument?.let {
+      presenter?.onViewCreated(it)
+    }
+  }
+
+  override fun onPause() {
+    super.onPause()
+    App.INSTANCE.cicerone.navigatorHolder.removeNavigator()
+  }
+
+  override fun showInfoMessage(msg: String) {
+    toast(msg)
+  }
 }

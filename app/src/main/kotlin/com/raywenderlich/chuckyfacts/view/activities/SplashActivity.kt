@@ -25,8 +25,28 @@ package com.raywenderlich.chuckyfacts.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.raywenderlich.chuckyfacts.App
+import ru.terrakok.cicerone.Navigator
+import ru.terrakok.cicerone.commands.Forward
 
 class SplashActivity : AppCompatActivity() {
+
+  private val navigator : Navigator? by lazy {
+    Navigator {
+      if(it is Forward){
+        forward(it)
+      }
+    }
+  }
+
+  private fun forward(forward: Forward) {
+    when(forward.screenKey){
+      MainActivity.TAG -> {
+        startActivity(Intent(this@SplashActivity,MainActivity::class.java))
+        finish()
+      }
+    }
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -34,5 +54,16 @@ class SplashActivity : AppCompatActivity() {
     startActivity(Intent(this@SplashActivity, MainActivity::class.java))
     // close splash activity
     finish()
+  }
+
+  override fun onResume() {
+    super.onResume()
+    App.INSTANCE.cicerone.navigatorHolder.setNavigator(navigator)
+
+  }
+
+  override fun onPause() {
+    super.onPause()
+    App.INSTANCE.cicerone.navigatorHolder.removeNavigator()
   }
 }

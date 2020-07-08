@@ -46,7 +46,9 @@ dependencies {
   // Including 3rd party libraries (Cicerone, Fuel, Gson)
   implementation "com.github.kittinunf.fuel:fuel-android:$rootProject.ext.fuel_version"
   implementation "com.github.kittinunf.fuel:fuel-gson:$rootProject.ext.fuel_version"
-  
+
+  implementation 'ru.terrakok.cicerone:cicerone:2.1.0'
+
   // Required -- JUnit 4 framework and Kotlin for testing
   testImplementation "junit:junit:$rootProject.ext.junit_version"
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
